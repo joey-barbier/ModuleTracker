@@ -1,0 +1,19 @@
+# Build artifacts
+.build/
+.swiftpm/
+
+# macOS
+.DS_Store
+*.xcuserstate
+
+# IDE
+.idea/
+*.xcworkspace/
+xcuserdata/
+
+# User customization (copy from .example)
+Sources/ModuleTracker/Bootstrap.swift
+Sources/ModuleTracker/Scanners/Custom/*
+!Sources/ModuleTracker/Scanners/Custom/.keep
+Sources/ModuleTracker/Rules/Custom/*
+!Sources/ModuleTracker/Rules/Custom/.keep

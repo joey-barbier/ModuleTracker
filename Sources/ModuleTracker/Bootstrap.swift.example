@@ -1,0 +1,39 @@
+import Foundation
+
+// MARK: - Bootstrap
+//
+// ModuleTracker is an EMPTY SHELL by design.
+// Running it alone produces 0 modules, 0 rules, 0 metrics.
+//
+// To use ModuleTracker in your project:
+// 1. Create your scanners (see doc_IA/add-scanner.md)
+// 2. Create your rules with FieldMetadata (see doc_IA/add-rule.md)
+// 3. Register them all in this file
+//
+// Example:
+// ```swift
+// enum Bootstrap {
+//     static func register() {
+//         // Scanners
+//         _ = SPMScanner._register
+//         _ = LegacyScanner._register
+//         _ = PodsScanner._register
+//
+//         // Rules
+//         _ = ArchitectureTypeRule._register
+//         _ = NavigationTypeRule._register
+//         _ = TestFrameworkRule._register
+//         _ = DataSourceViolationRule._register
+//     }
+// }
+// ```
+
+enum Bootstrap {
+    /// Register all custom scanners and rules.
+    /// By default, nothing is registered (empty shell).
+    static func register() {
+        // Add your registrations here:
+        // _ = YourScanner._register
+        // _ = YourRule._register
+    }
+}

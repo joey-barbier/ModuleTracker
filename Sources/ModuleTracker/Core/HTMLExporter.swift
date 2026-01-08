@@ -397,7 +397,14 @@ struct HTMLExporter {
 
                         html += `<tr class="module-row" onclick="toggleExpand('${m.name}')">
                             <td title="${m.path || ''}">${expandIcon}<span class="module-name">${m.name}</span> <span class="badge badge-purple">${m.targets.length} target${m.targets.length > 1 ? 's' : ''}</span></td>`;
-                        tableFields.forEach(() => html += '<td>-</td>');
+                        tableFields.forEach(([fieldId, field]) => {
+                            if (field.level === 'module') {
+                                const val = m.custom_fields?.[fieldId];
+                                html += `<td onclick="event.stopPropagation();showField('${fieldId}')" style="cursor:pointer">${val !== undefined ? badge(fieldId, val) : '-'}</td>`;
+                            } else {
+                                html += '<td>-</td>';
+                            }
+                        });
                         html += '</tr>';
 
                         if (isExpanded) {
@@ -408,8 +415,12 @@ struct HTMLExporter {
                                 html += `<tr class="target-row">
                                     <td><span class="target-name">↳ ${t.name}</span></td>`;
                                 tableFields.forEach(([fieldId, field]) => {
-                                    const val = t.custom_fields?.[fieldId];
-                                    html += `<td onclick="showField('${fieldId}')" style="cursor:pointer">${val !== undefined ? badge(fieldId, val) : '-'}</td>`;
+                                    if (field.level === 'module') {
+                                        html += '<td></td>';
+                                    } else {
+                                        const val = t.custom_fields?.[fieldId];
+                                        html += `<td onclick="showField('${fieldId}')" style="cursor:pointer">${val !== undefined ? badge(fieldId, val) : '-'}</td>`;
+                                    }
                                 });
                                 html += '</tr>';
                             });
